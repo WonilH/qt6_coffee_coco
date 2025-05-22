@@ -1,6 +1,7 @@
 // Copyright (C) 2023 The Qt Company Ltd.
 // SPDX-License-Identifier: LicenseRef-Qt-Commercial OR BSD-3-Clause
 import QtQuick
+import Backend
 
 SettingsForm {
     rectangle.states: [
@@ -60,19 +61,19 @@ SettingsForm {
     sugarSlider.onMoved: {
         sugarText.sugarAmount = sugarSlider.position * 4
     }
-    confirmButton.onClicked: applicationFlow.confirmButton()
+    confirmButton.onClicked: FlowBackend.confirmButton()
     //! [Value changed]
     coffeeSlider.onValueChanged: {
-        applicationFlow.coffeeAmount = coffeeSlider.value
+        FlowBackend.coffeeAmount = coffeeSlider.value
     }
     //! [Value changed]
     milkSlider.onValueChanged: {
-        applicationFlow.milkAmount = milkSlider.value
+        FlowBackend.milkAmount = milkSlider.value
     }
     foamSlider.onValueChanged: {
-        applicationFlow.foamAmount = foamSlider.value
+        FlowBackend.foamAmount = foamSlider.value
     }
     sugarSlider.onValueChanged: {
-        applicationFlow.sugarAmount = sugarSlider.value
+        FlowBackend.sugarAmount = sugarSlider.value
     }
 }

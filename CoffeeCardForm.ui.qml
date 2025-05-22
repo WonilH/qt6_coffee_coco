@@ -4,6 +4,7 @@ import QtQuick
 import QtQuick.Layouts
 import QtQuick.Controls.Basic
 import QtQuick.Effects
+import Backend
 
 // Height, width and any other size related properties containing odd looking float or other dividers
 // that do not seem to have any logical origin are just arbitrary and based on original design
@@ -30,7 +31,7 @@ Column {
     states: [
         State {
             name: "portrait"
-            when: applicationFlow.mode == "portrait"
+            when: FlowBackend.mode == "portrait"
             PropertyChanges {
                 target: coffeeCardRectangle
                 implicitHeight: (applicationFlow.stack.height / 2) - 20
@@ -40,7 +41,7 @@ Column {
         },
         State {
             name: "landscape"
-            when: applicationFlow.mode == "landscape"
+            when: FlowBackend.mode == "landscape"
             PropertyChanges {
                 target: coffeeCardRectangle
                 implicitHeight: applicationFlow.height / 2
