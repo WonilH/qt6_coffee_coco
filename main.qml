@@ -2,6 +2,7 @@
 // SPDX-License-Identifier: LicenseRef-Qt-Commercial OR BSD-3-Clause
 import QtQuick
 import QtQuick.Controls.Basic
+import Backend
 //! [Set application window size]
 ApplicationWindow {
     visible: true
@@ -12,6 +13,8 @@ ApplicationWindow {
     ApplicationFlow {
         width: parent.width
         height: parent.height
-        mode: (Screen.height > Screen.width) ? "portrait" : "landscape"
+    }
+    Component.onCompleted: {
+        FlowBackend.mode = (Screen.height > Screen.width) ? "portrait" : "landscape"
     }
 }

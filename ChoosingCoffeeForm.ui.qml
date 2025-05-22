@@ -2,6 +2,7 @@
 // SPDX-License-Identifier: LicenseRef-Qt-Commercial OR BSD-3-Clause
 import QtQuick
 import QtQuick.Layouts
+import Backend
 
 Item {
     // Height, width and any other size related properties containing odd looking float or other dividers
@@ -48,28 +49,28 @@ Item {
             coffeeName: "Cappuccino"
             ingredients: "Milk, Espresso, Foam"
             time: 2
-            cupsLeft: applicationFlow.cappuccinos
+            cupsLeft: FlowBackend.cappuccinos
         }
         CoffeeCard {
             id: latte
             coffeeName: "Latte"
             ingredients: "Coffee, Foam"
             time: 3
-            cupsLeft: applicationFlow.lattes
+            cupsLeft: FlowBackend.lattes
         }
         CoffeeCard {
             id: espresso
             coffeeName: "Espresso"
             ingredients: "Milk, Espresso"
             time: 2
-            cupsLeft: applicationFlow.espressos
+            cupsLeft: FlowBackend.espressos
         }
         CoffeeCard {
             id: macchiato
             coffeeName: "Macchiato"
             ingredients: "Milk foam, Espresso"
             time: 4
-            cupsLeft: applicationFlow.macchiatos
+            cupsLeft: FlowBackend.macchiatos
         }
     }
     //! [Coffees]

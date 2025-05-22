@@ -1,6 +1,7 @@
 // Copyright (C) 2023 The Qt Company Ltd.
 // SPDX-License-Identifier: LicenseRef-Qt-Commercial OR BSD-3-Clause
 import QtQuick
+import Backend
 
 ProgressForm {
     property alias timer: timer
@@ -13,7 +14,7 @@ ProgressForm {
         interval: brewTime
         running: true
         onTriggered: {
-            applicationFlow.onFinished()
+            FlowBackend.onFinished()
         }
     }
     //! [Timer]

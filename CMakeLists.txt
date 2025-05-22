@@ -9,6 +9,7 @@ qt_standard_project_setup(REQUIRES 6.6)
 
 qt_add_executable(coffeemachine
     main.cpp
+    ApplicationFlowBackend.cpp
 )
 
 set_source_files_properties(Colors.qml PROPERTIES
