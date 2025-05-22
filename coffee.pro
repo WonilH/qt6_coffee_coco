@@ -4,7 +4,11 @@ QT += qml quick
 
 CONFIG += c++11
 
-SOURCES += main.cpp
+SOURCES += main.cpp \
+    ApplicationFlowBackend.cpp
+
+HEADERS += \
+    ApplicationFlowBackend.h
 
 RESOURCES += \
     coffeemachine.qrc
