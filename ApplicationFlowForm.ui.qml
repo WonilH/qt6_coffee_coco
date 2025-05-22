@@ -2,6 +2,7 @@
 // SPDX-License-Identifier: LicenseRef-Qt-Commercial OR BSD-3-Clause
 import QtQuick
 import QtQuick.Controls.Basic
+import Backend 1.0
 
 Rectangle {
     // Height, width and any other size related properties containing odd looking float or other dividers
@@ -56,7 +57,7 @@ Rectangle {
         initialItem: Home {
             id: home
             visible: true
-            state: applicationFlow.mode
+            state: FlowBackend.mode
         }
         pushEnter: Transition {
             PropertyAnimation {
@@ -96,33 +97,33 @@ Rectangle {
         id: choosingCoffee
         ChoosingCoffee {
             visible: true
-            state: applicationFlow.mode
+            state: FlowBackend.mode
         }
     }
     Component {
         id: settings
         Settings {
-            foamAmount: applicationFlow.foamAmount
-            milkAmount: applicationFlow.milkAmount
-            coffeeAmount: applicationFlow.coffeeAmount
-            state: applicationFlow.mode
+            foamAmount: FlowBackend.foamAmount
+            milkAmount: FlowBackend.milkAmount
+            coffeeAmount: FlowBackend.coffeeAmount
+            state: FlowBackend.mode
         }
     }
     Component {
         id: insert
         Insert {
-            state: applicationFlow.mode
+            state: FlowBackend.mode
         }
     }
     Component {
         id: progress
         Progress {
-            brewTime: applicationFlow.brewTime
-            coffeeAmount: applicationFlow.coffeeAmount
-            milkAmount: applicationFlow.milkAmount
-            foamAmount: applicationFlow.foamAmount
-            sugarAmount: applicationFlow.sugarAmount
-            state: applicationFlow.mode
+            brewTime: FlowBackend.brewTime
+            coffeeAmount: FlowBackend.coffeeAmount
+            milkAmount: FlowBackend.milkAmount
+            foamAmount: FlowBackend.foamAmount
+            sugarAmount: FlowBackend.sugarAmount
+            state: FlowBackend.mode
             progressBarValue: root.progressBarValue
             cup.state: root.progressCupState
         }
@@ -130,11 +131,11 @@ Rectangle {
     Component {
         id: ready
         Ready {
-            foamAmount: applicationFlow.foamAmount
-            milkAmount: applicationFlow.milkAmount
-            coffeeAmount: applicationFlow.coffeeAmount
-            sugarAmount: applicationFlow.sugarAmount
-            state: applicationFlow.mode
+            foamAmount: FlowBackend.foamAmount
+            milkAmount: FlowBackend.milkAmount
+            coffeeAmount: FlowBackend.coffeeAmount
+            sugarAmount: FlowBackend.sugarAmount
+            state: FlowBackend.mode
         }
     }
 }

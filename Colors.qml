@@ -3,6 +3,7 @@
 
 pragma Singleton
 import QtQuick
+import Backend 1.0
 
 Item {
     QtObject {
@@ -120,7 +121,7 @@ Item {
     property color shadow: "white"
     property color border: "#898989"
     property color grey: "#585858"
-    property var currentTheme: dark
+    property var currentTheme: FlowBackend.darkTheme ? dark : light
     property alias dark: dark
     property alias light: light
     property alias invertedGreenBorder: invertedGreenBorder

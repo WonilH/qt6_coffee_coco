@@ -2,6 +2,7 @@
 // SPDX-License-Identifier: LicenseRef-Qt-Commercial OR BSD-3-Clause
 import QtQuick
 import QtQuick.Layouts
+import Backend 1.0
 
 CoffeeCardForm {
 
@@ -72,7 +73,7 @@ CoffeeCardForm {
         },
         State {
             name: "smaller"
-            when: applicationFlow.mode == "portrait" && ((Screen.height * Screen.devicePixelRatio) + (Screen.width * Screen.devicePixelRatio)) < 1200
+            when: FlowBackend.mode == "portrait" && ((Screen.height * Screen.devicePixelRatio) + (Screen.width * Screen.devicePixelRatio)) < 1200
             PropertyChanges {
                 target: coffeeCardCircle
                 implicitWidth: coffeeCardRectangle.implicitWidth / 2
