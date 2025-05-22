@@ -60,19 +60,19 @@ SettingsForm {
     sugarSlider.onMoved: {
         sugarText.sugarAmount = sugarSlider.position * 4
     }
-    confirmButton.onClicked: applicationFlow.confirmButton()
+    confirmButton.onClicked: ApplicationFlowBackend.confirmButton()
     //! [Value changed]
     coffeeSlider.onValueChanged: {
-        applicationFlow.coffeeAmount = coffeeSlider.value
+        ApplicationFlowBackend.coffeeAmount = coffeeSlider.value
     }
     //! [Value changed]
     milkSlider.onValueChanged: {
-        applicationFlow.milkAmount = milkSlider.value
+        ApplicationFlowBackend.milkAmount = milkSlider.value
     }
     foamSlider.onValueChanged: {
-        applicationFlow.foamAmount = foamSlider.value
+        ApplicationFlowBackend.foamAmount = foamSlider.value
     }
     sugarSlider.onValueChanged: {
-        applicationFlow.sugarAmount = sugarSlider.value
+        ApplicationFlowBackend.sugarAmount = sugarSlider.value
     }
 }

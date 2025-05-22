@@ -10,7 +10,7 @@ ReadyForm {
         interval: 3000
         running: true
         onTriggered: {
-            applicationFlow.onReturnToStart()
+            ApplicationFlowBackend.onReturnToStart()
         }
     }
     grid.states: [

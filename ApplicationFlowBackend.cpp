@@ -337,5 +337,3 @@ void ApplicationFlowBackend::returnToStart() {
     setProgressCupState("0");
     setCurrentState("Home");
 }
-
-```

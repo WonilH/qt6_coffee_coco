@@ -13,7 +13,7 @@ ProgressForm {
         interval: brewTime
         running: true
         onTriggered: {
-            applicationFlow.onFinished()
+            ApplicationFlowBackend.onFinished()
         }
     }
     //! [Timer]

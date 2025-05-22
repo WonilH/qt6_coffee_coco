@@ -29,6 +29,8 @@ ui_*.h
 *.jsc
 Makefile*
 *build-*
+*build/
+.qmlls.ini
 *.qm
 *.prl
 

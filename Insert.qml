@@ -2,6 +2,6 @@
 // SPDX-License-Identifier: LicenseRef-Qt-Commercial OR BSD-3-Clause
 
 InsertForm {
-    continueButton.onClicked: applicationFlow.continueButton()
-    cancelButton.onClicked: applicationFlow.cancelButton()
+    continueButton.onClicked: ApplicationFlowBackend.continueButton()
+    cancelButton.onClicked: ApplicationFlowBackend.cancelButton()
 }

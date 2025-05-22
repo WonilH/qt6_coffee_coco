@@ -2,8 +2,8 @@
 // SPDX-License-Identifier: LicenseRef-Qt-Commercial OR BSD-3-Clause
 
 ChoosingCoffeeForm {
-    cappuccino.button.onClicked: applicationFlow.cappuccino()
-    macchiato.button.onClicked: applicationFlow.macchiato()
-    espresso.button.onClicked: applicationFlow.espresso()
-    latte.button.onClicked: applicationFlow.latte()
+    cappuccino.button.onClicked: ApplicationFlowBackend.cappuccino()
+    macchiato.button.onClicked: ApplicationFlowBackend.macchiato()
+    espresso.button.onClicked: ApplicationFlowBackend.espresso()
+    latte.button.onClicked: ApplicationFlowBackend.latte()
 }

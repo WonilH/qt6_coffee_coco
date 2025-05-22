@@ -3,8 +3,8 @@
 import QtQuick
 
 CustomToolBarForm {
-    backButton.onClicked: applicationFlow.backButton()
-    themeButton.onClicked: applicationFlow.themeButton()
+    backButton.onClicked: ApplicationFlowBackend.backButton()
+    themeButton.onClicked: ApplicationFlowBackend.themeButton()
     backButton.states: State {
         name: "pressed"
         when: backButton.pressed

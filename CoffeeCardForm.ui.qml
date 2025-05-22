@@ -30,21 +30,21 @@ Column {
     states: [
         State {
             name: "portrait"
-            when: applicationFlow.mode == "portrait"
+            when: ApplicationFlowBackend.mode == "portrait"
             PropertyChanges {
                 target: coffeeCardRectangle
-                implicitHeight: (applicationFlow.stack.height / 2) - 20
+                implicitHeight: (ApplicationFlowBackend.stack.height / 2) - 20
                                 - (coffeeCardCircle.height / 2)
-                implicitWidth: applicationFlow.width / 2.4
+                implicitWidth: ApplicationFlowBackend.width / 2.4
             }
         },
         State {
             name: "landscape"
-            when: applicationFlow.mode == "landscape"
+            when: ApplicationFlowBackend.mode == "landscape"
             PropertyChanges {
                 target: coffeeCardRectangle
-                implicitHeight: applicationFlow.height / 2
-                implicitWidth: applicationFlow.width / 5
+                implicitHeight: ApplicationFlowBackend.height / 2
+                implicitWidth: ApplicationFlowBackend.width / 5
             }
         }
     ]

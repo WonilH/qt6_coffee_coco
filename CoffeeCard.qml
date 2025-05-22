@@ -10,7 +10,7 @@ CoffeeCardForm {
         when: ((Screen.height * Screen.devicePixelRatio) + (Screen.width * Screen.devicePixelRatio)) < 2900
         PropertyChanges {
             target: coffeeCardRectangle
-            implicitHeight: ((applicationFlow.stack.height - ((applicationFlow.width / 2.4) / 1.36)) / 2) + 40
+            implicitHeight: ((ApplicationFlowBackend.stack.height - ((ApplicationFlowBackend.width / 2.4) / 1.36)) / 2) + 40
         }
     }
 
@@ -72,7 +72,7 @@ CoffeeCardForm {
         },
         State {
             name: "smaller"
-            when: applicationFlow.mode == "portrait" && ((Screen.height * Screen.devicePixelRatio) + (Screen.width * Screen.devicePixelRatio)) < 1200
+            when: ApplicationFlowBackend.mode == "portrait" && ((Screen.height * Screen.devicePixelRatio) + (Screen.width * Screen.devicePixelRatio)) < 1200
             PropertyChanges {
                 target: coffeeCardCircle
                 implicitWidth: coffeeCardRectangle.implicitWidth / 2

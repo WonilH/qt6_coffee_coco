@@ -12,6 +12,6 @@ ApplicationWindow {
     ApplicationFlow {
         width: parent.width
         height: parent.height
-        mode: (Screen.height > Screen.width) ? "portrait" : "landscape"
+        // mode: (Screen.height > Screen.width) ? "portrait" : "landscape"
     }
 }
