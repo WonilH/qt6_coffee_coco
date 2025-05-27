@@ -6,15 +6,12 @@ import Backend
 //! [Set application window size]
 ApplicationWindow {
     visible: true
-    width: 1000
-    height: 600
+    width: 600
+    height: 1000
     title: qsTr("Coffee")
 //! [Set application window size]
     ApplicationFlow {
         width: parent.width
-        height: parent.height
-    }
-    Component.onCompleted: {
-        FlowBackend.mode = (Screen.height > Screen.width) ? "portrait" : "landscape"
+        height: parent.height        
     }
 }

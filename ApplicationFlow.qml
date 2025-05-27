@@ -6,9 +6,16 @@ import Backend
 ApplicationFlowForm {
     id: applicationFlow
     state: "Home"
+
+    property string mode:  (height > width) ? "portrait" : "landscape"
+
     Component.onCompleted: FlowBackend.setRoot(applicationFlow)
 
     home.getStartedbutton.onClicked: FlowBackend.getStarted()
+
+    onModeChanged: {
+        FlowBackend.mode = mode
+    }
 
     Connections {
         target: FlowBackend

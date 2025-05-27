@@ -50,19 +50,19 @@ ProgressForm {
             name: "1"
             PropertyChanges {
                 target: cup
-                coffeeAmount: root.coffeeAmount
+                coffeeAmount: FlowBackend.coffeeAmount
             }
             PropertyChanges {
                 target: cup
-                milkAmount: root.milkAmount
+                milkAmount: FlowBackend.milkAmount
             }
             PropertyChanges {
                 target: cup
-                foamAmount: root.foamAmount
+                foamAmount: FlowBackend.foamAmount
             }
             PropertyChanges {
                 target: cup
-                sugarAmount: root.sugarAmount
+                sugarAmount: FlowBackend.sugarAmount
             }
         }
     ]
