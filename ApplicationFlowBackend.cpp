@@ -111,11 +111,6 @@ void ApplicationFlowBackend::setRoot(QObject *root)
     m_root = root;
 }
 
-static QObject *find(QObject *root, const char *name)
-{
-    return root ? root->findChild<QObject*>(QString::fromLatin1(name), Qt::FindChildrenRecursively) : nullptr;
-}
-
 void ApplicationFlowBackend::themeButton()
 {
     setDarkTheme(!m_darkTheme);
@@ -131,13 +126,7 @@ void ApplicationFlowBackend::cappuccino()
     setMilkAmount(60);
     setFoamAmount(60);
     setBrewTime(5000);
-    QObject *stack = find(m_root, "stack");
-    QObject *settings = find(m_root, "settings");
-    if (stack && settings)
-        QMetaObject::invokeMethod(stack, "push", Q_ARG(QVariant, QVariant::fromValue(settings)));
-    QObject *coffeeText = find(m_root, "coffeeText");
-    if (coffeeText)
-        coffeeText->setProperty("text", "Cappuccino");
+    emit pushSettings();
 }
 
 void ApplicationFlowBackend::espresso()
@@ -150,13 +139,7 @@ void ApplicationFlowBackend::espresso()
     setMilkAmount(0);
     setFoamAmount(0);
     setBrewTime(4000);
-    QObject *stack = find(m_root, "stack");
-    QObject *settings = find(m_root, "settings");
-    if (stack && settings)
-        QMetaObject::invokeMethod(stack, "push", Q_ARG(QVariant, QVariant::fromValue(settings)));
-    QObject *coffeeText = find(m_root, "coffeeText");
-    if (coffeeText)
-        coffeeText->setProperty("text", "Espresso");
+    emit pushSettings();
 }
 
 void ApplicationFlowBackend::latte()
@@ -169,13 +152,7 @@ void ApplicationFlowBackend::latte()
     setMilkAmount(20);
     setFoamAmount(60);
     setBrewTime(6000);
-    QObject *stack = find(m_root, "stack");
-    QObject *settings = find(m_root, "settings");
-    if (stack && settings)
-        QMetaObject::invokeMethod(stack, "push", Q_ARG(QVariant, QVariant::fromValue(settings)));
-    QObject *coffeeText = find(m_root, "coffeeText");
-    if (coffeeText)
-        coffeeText->setProperty("text", "Latte");
+    emit pushSettings();
 }
 
 void ApplicationFlowBackend::macchiato()
@@ -188,13 +165,7 @@ void ApplicationFlowBackend::macchiato()
     setMilkAmount(5);
     setFoamAmount(10);
     setBrewTime(8000);
-    QObject *stack = find(m_root, "stack");
-    QObject *settings = find(m_root, "settings");
-    if (stack && settings)
-        QMetaObject::invokeMethod(stack, "push", Q_ARG(QVariant, QVariant::fromValue(settings)));
-    QObject *coffeeText = find(m_root, "coffeeText");
-    if (coffeeText)
-        coffeeText->setProperty("text", "Macchiato");
+    emit pushSettings();
 }
 
 void ApplicationFlowBackend::getStarted()
@@ -202,19 +173,14 @@ void ApplicationFlowBackend::getStarted()
     if (!m_root)
         return;
     m_root->setProperty("state", "Coffee-selection");
-    QObject *stack = find(m_root, "stack");
-    QObject *choosingCoffee = find(m_root, "choosingCoffee");
-    if (stack && choosingCoffee)
-        QMetaObject::invokeMethod(stack, "push", Q_ARG(QVariant, QVariant::fromValue(choosingCoffee)));
+    emit pushChoosingCoffee();
 }
 
 void ApplicationFlowBackend::backButton()
 {
     if (!m_root)
         return;
-    QObject *stack = find(m_root, "stack");
-    if (stack)
-        QMetaObject::invokeMethod(stack, "pop");
+    emit pop();
     QString prev = m_root->property("previousState").toString();
     m_root->setProperty("state", prev);
 }
@@ -223,10 +189,7 @@ void ApplicationFlowBackend::confirmButton()
 {
     if (!m_root)
         return;
-    QObject *stack = find(m_root, "stack");
-    QObject *insert = find(m_root, "insert");
-    if (stack && insert)
-        QMetaObject::invokeMethod(stack, "push", Q_ARG(QVariant, QVariant::fromValue(insert)));
+    emit pushInsert();
     m_root->setProperty("state", "Insert");
 }
 
@@ -234,10 +197,7 @@ void ApplicationFlowBackend::continueButton()
 {
     if (!m_root)
         return;
-    QObject *stack = find(m_root, "stack");
-    QObject *progress = find(m_root, "progress");
-    if (stack && progress)
-        QMetaObject::invokeMethod(stack, "push", Q_ARG(QVariant, QVariant::fromValue(progress)));
+    emit pushProgress();
     m_root->setProperty("state", "Progress");
     m_root->setProperty("progressBarValue", 1);
     m_root->setProperty("progressCupState", "1");
@@ -258,22 +218,14 @@ void ApplicationFlowBackend::cancelButton()
     if (!m_root)
         return;
     m_root->setProperty("state", "Coffee-selection");
-    QObject *stack = find(m_root, "stack");
-    if (stack) {
-        QVariant item;
-        QMetaObject::invokeMethod(stack, "get", Q_RETURN_ARG(QVariant, item), Q_ARG(int, 1));
-        QMetaObject::invokeMethod(stack, "pop", Q_ARG(QVariant, item));
-    }
+    emit popToIndex(1);
 }
 
 void ApplicationFlowBackend::onFinished()
 {
     if (!m_root)
         return;
-    QObject *stack = find(m_root, "stack");
-    QObject *ready = find(m_root, "ready");
-    if (stack && ready)
-        QMetaObject::invokeMethod(stack, "push", Q_ARG(QVariant, QVariant::fromValue(ready)));
+    emit pushReady();
     m_root->setProperty("state", "Ready");
 }
 
@@ -281,12 +233,7 @@ void ApplicationFlowBackend::onReturnToStart()
 {
     if (!m_root)
         return;
-    QObject *stack = find(m_root, "stack");
-    if (stack) {
-        QVariant ret;
-        QMetaObject::invokeMethod(stack, "get", Q_RETURN_ARG(QVariant, ret), Q_ARG(int, 0));
-        QMetaObject::invokeMethod(stack, "pop", Q_ARG(QVariant, ret));
-    }
+    emit popToIndex(0);
     m_root->setProperty("state", "Home");
     m_root->setProperty("progressBarValue", 0);
     m_root->setProperty("progressCupState", "0");

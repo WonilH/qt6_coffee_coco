@@ -9,6 +9,22 @@ ApplicationFlowForm {
     Component.onCompleted: FlowBackend.setRoot(applicationFlow)
 
     home.getStartedbutton.onClicked: FlowBackend.getStarted()
+
+    Connections {
+        target: FlowBackend
+        function onPushChoosingCoffee() {
+            stack.push(choosingCoffee)
+        }
+        function onPushSettings() {
+            stack.push(settings)
+            coffeeText.text = applicationFlow.coffeeName
+        }
+        function onPushInsert() { stack.push(insert) }
+        function onPushProgress() { stack.push(progress) }
+        function onPushReady() { stack.push(ready) }
+        function onPop() { stack.pop() }
+        function onPopToIndex(index) { stack.pop(stack.get(index)) }
+    }
     //! [States]
     states: [
         State {
