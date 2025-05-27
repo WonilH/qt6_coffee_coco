@@ -61,19 +61,20 @@ public:
     int macchiatos() const { return m_macchiatos; }
     void setMacchiatos(int value);
 
-    Q_INVOKABLE void setRoot(QObject *root);
-    Q_INVOKABLE void themeButton();
-    Q_INVOKABLE void cappuccino();
-    Q_INVOKABLE void espresso();
-    Q_INVOKABLE void latte();
-    Q_INVOKABLE void macchiato();
-    Q_INVOKABLE void getStarted();
-    Q_INVOKABLE void backButton();
-    Q_INVOKABLE void confirmButton();
-    Q_INVOKABLE void continueButton();
-    Q_INVOKABLE void cancelButton();
-    Q_INVOKABLE void onFinished();
-    Q_INVOKABLE void onReturnToStart();
+public slots:
+    void setRoot(QObject *root);
+    void themeButton();
+    void cappuccino();
+    void espresso();
+    void latte();
+    void macchiato();
+    void getStarted();
+    void backButton();
+    void confirmButton();
+    void continueButton();
+    void cancelButton();
+    void onFinished();
+    void onReturnToStart();
 
 signals:
     void animationDurationChanged();
@@ -88,6 +89,15 @@ signals:
     void lattesChanged();
     void espressosChanged();
     void macchiatosChanged();
+
+    // navigation requests handled in QML
+    void pushChoosingCoffee();
+    void pushSettings();
+    void pushInsert();
+    void pushProgress();
+    void pushReady();
+    void pop();
+    void popToIndex(int index);
 
 private:
     QObject *m_root = nullptr;
